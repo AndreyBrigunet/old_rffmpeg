@@ -24,27 +24,27 @@ rffmpeg:
         file: true
 
         # Log messages to this file - ensure the user running rffmpeg can write to it
-        logfile: "/var/log/jellyfin/rffmpeg.log"
+        logfile: "/etc/rffmpeg/rffmpeg.log"
 
     # Remote (SSH) configuration
     remote:
         # A YAML list of remote hosts to connect to; either direct list or name/weight supported
         hosts:
-            - localhost
-            - name: gpu1
-              weight: 2   # Relative to any non-weighted hosts which have weight 1
+            - 194.61.1.5
+            - name: "brig.net"
+            - weight: 2   # Relative to any non-weighted hosts which have weight 1
 
         # The remote SSH user to connect as
-        user: jellyfin
+        user: www-root
 
         # How long to persist SSH sessions (0 to disable)
-        persist: 300
+        persist: 0
 
         # A YAML list of additional SSH arguments (e.g. private keys),
         # one line per space-separated argument element.
         args: 
             - "-i"
-            - "/var/lib/jellyfin/id_rsa"
+            - "/etc/rffmpeg/rsa/id_rsa"
 
 
     # Remote command configuration
@@ -59,8 +59,8 @@ rffmpeg:
             - ""
 
         # The (remote) ffmpeg and ffprobe command binary paths
-        ffmpeg: "/usr/lib/jellyfin-ffmpeg/ffmpeg"
-        ffprobe: "/usr/lib/jellyfin-ffmpeg/ffprobe"
+        ffmpeg: "/usr/bin/ffmpeg"
+        ffprobe: "/usr/bin/ffprobe"
 
         # An optional local fallback ffmpeg and ffprobe, if you wish this to be different from the above paths
         #fallback_ffmpeg: "/usr/lib/jellyfin-ffmpeg/ffmpeg"
